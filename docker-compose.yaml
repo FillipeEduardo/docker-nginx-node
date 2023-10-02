@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  api:
+    build: ./
+    restart: always
+    container_name: api
+    depends_on:
+      - db
+    networks:
+      - nodenet
+    expose:
+      - 3000
+  db:
+    image: mysql
+    restart: always
+    container_name: db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'fullcycle'
+    networks:
+      - nodenet
+    expose:
+      - 3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile_nginx
+    restart: always
+    container_name: web
+    networks:
+      - nodenet
+    ports:
+      - 8080:80
+    depends_on:
+      - api
+networks:
+  nodenet:
