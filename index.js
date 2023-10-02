@@ -17,6 +17,18 @@ app.get("/", async (_, res) => {
   res.send(`${titulo}<ul>${itens}</ul>`);
 });
 
-app.listen(port,() => {
+app.listen(port, async () => {
   console.log(`Escutando na porta ${port}`);
+  await criarTabelaPeople()
+  await inserirRegistroPeople()
 });
+
+const criarTabelaPeople = async () => {
+  const createQuery = 'CREATE TABLE IF NOT EXISTS people(id int NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255));'
+  await connection.execute(createQuery);
+}
+
+const inserirRegistroPeople = async () => {
+  const insertQuery = 'INSERT INTO people (name) VALUES (\'Fillipe\')'
+  await connection.execute(insertQuery);
+}

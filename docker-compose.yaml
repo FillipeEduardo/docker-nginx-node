@@ -11,12 +11,12 @@ services:
       - nodenet
     expose:
       - 3000
+    command: sh -c '/usr/bin/wait-for http://db:3306 -- node ./index.js'
   db:
     image: mysql
     restart: always
     container_name: db
-    ports:
-      - 3306:3306
+    tty: true
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_DATABASE: 'fullcycle'
