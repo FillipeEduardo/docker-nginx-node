@@ -25,7 +25,7 @@ services:
     expose:
       - 3306
     volumes:
-      - ./mysql:/var/lib/mysql
+      - volume-node:/var/lib/mysql
   web:
     build:
       context: ./
@@ -40,3 +40,5 @@ services:
       - api
 networks:
   nodenet:
+volumes:
+  volume-node:
