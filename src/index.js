@@ -1,8 +1,8 @@
 const express = require("express");
-const mysql = require("mysql2/promise");
+const { createPool } = require("mysql2/promise");
 const app = express();
 const port = 3000;
-const connection = mysql.createPool({
+const connection = createPool({
   host: "db",
   user: "root",
   password: "root",

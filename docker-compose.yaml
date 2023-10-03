@@ -11,7 +11,9 @@ services:
       - nodenet
     expose:
       - 3000
-    command: sh -c '/usr/bin/wait-for http://db:3306 -- node ./index.js'
+    volumes:
+      - ./src:/app/src
+    command: sh -c '/usr/bin/wait-for http://db:3306 -- npm start'
   db:
     image: mysql
     restart: always
