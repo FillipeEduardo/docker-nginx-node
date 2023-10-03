@@ -38,6 +38,7 @@ services:
       - 8080:80
     depends_on:
       - api
+    command: sh -c '/usr/bin/wait-for http://api:3000 -- nginx -g "daemon off;"'
 networks:
   nodenet:
 volumes:
