@@ -29,6 +29,6 @@ const criarTabelaPeople = async () => {
 }
 
 const inserirRegistroPeople = async () => {
-  const insertQuery = 'INSERT INTO people (name) VALUES (\'Fillipe\')'
+  const insertQuery = 'INSERT INTO people (name) VALUES (\'Layse\')'
   await connection.execute(insertQuery);
 }
